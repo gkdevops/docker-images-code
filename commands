@@ -1,0 +1,70 @@
+    1  cd /opt/
+    2  ls -l
+    3  yum install -y wget >/dev/null
+    4  wget https://storebits.docker.com/ee/centos/sub-ae2c2f06-fba1-48ee-a84d-536b00093bde/7/x86_64/stable-18.09/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+    5  wget https://storebits.docker.com/ee/centos/sub-ae2c2f06-fba1-48ee-a84d-536b00093bde/7/x86_64/stable-18.09/Packages/docker-ee-18.09.6-3.el7.x86_64.rpm
+    6  wget https://storebits.docker.com/ee/centos/sub-ae2c2f06-fba1-48ee-a84d-536b00093bde/7/x86_64/stable-18.09/Packages/docker-ee-cli-18.09.6-3.el7.x86_64.rpm
+    7  ls -l
+    8  yum install containerd.io-1.2.6-3.3.el7.x86_64.rpm docker-ee-18.09.6-3.el7.x86_64.rpm docker-ee-cli-18.09.6-3.el7.x86_64.rpm
+    9  systemctl start docker
+   10  systemctl status docker
+   11  docker --version
+   12  docker version
+   13  docker image
+   14  docker image ls
+   15  docker image pull httpd:latest
+   16  docker image ls
+   17  cd /var/lib/docker
+   18  ls -l
+   19  docker image mcr.microsoft.com/dotnet/core/sdk:2.1
+   20  docker image pull mcr.microsoft.com/dotnet/core/sdk:2.1
+   21  docker image inspect httpd:latest
+   22  clear
+   23  docker image ls
+   24  docker image rm c4944162fecb
+   25  docker image ls
+   26  docker container run -d -p 25000:80 --name apache-1 httpd:latest
+   27  docker container ls
+   28  docker container ls -a
+   29  ps -ef
+   30  ps -ef | grep "docker"
+   31  clear
+   32  docker container ls
+   33  docker container run -d -p 9000:80 httpd:latest
+   34  docker container ls
+   35  docker container stop apache-1
+   36  docker container ls
+   37  docker container ls -a
+   38  docker container kill f0d4fe94ac58
+   39  docker container ls -a
+   40  docker container start zen_antonelli apache-1
+   41  docker container ls
+   42  docker container pause apache-1
+   43  docker container ls
+   44  docker container unpause apache-1
+   45  docker container top apache-1
+   46  docker container stats apache-1
+   47  docker container logs apache-1
+   48  docker info
+   49  cd /etc/docker/
+   50  ls
+   51  touch daemon.json
+   52  ls -l
+   53  rm daemon.json
+   54  docker container ls
+   55  docker container exec -it apache-1 /bin/bash
+   56  hostname
+   57  pwd
+   58  cd /opt/
+   59  docker cp apache-1:/usr/local/apache2/htdocs/index.html index.html
+   60  ls
+   61  ls -l index.html
+   62  cat index.html
+   63  mv index.html main.html
+   64  docker cp main.html apache-1:/usr/local/apache2/htdocs/main.html
+   65  docker container run -d -p 10000:80 --memory="50m" --cpus="0.1" --name apache-2 httpd:latest
+   66  docker container
+   67  docker container commit myapache:1.0.0 apache-1
+   68  docker container commit apache-1 myapache:1.0.0
+   69  docker image ls
+   70  history
