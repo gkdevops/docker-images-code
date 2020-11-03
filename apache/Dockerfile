@@ -14,10 +14,6 @@ ENV APACHE_LOG_DIR /var/log/apache2
 
 EXPOSE 80
 
-# RUN apt-get update
-# RUN apt-get install -y apache2
-# RUN apt-get clean
-
 RUN apt-get update && apt-get install -y apache2 && apt-get clean
 
 COPY index.html /var/www/
