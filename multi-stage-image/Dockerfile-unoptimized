@@ -1,0 +1,20 @@
+# Stage 1: Build the application with Maven
+FROM maven:3.9.5-eclipse-temurin-17
+
+# Set working directory
+WORKDIR /app
+
+# Copy pom.xml and download dependencies
+COPY . .
+
+# Maven code compilation
+RUN mvn clean package -DskipTests
+
+# Set petclinic directory
+WORKDIR /petclinic
+
+# Copy only the JAR from the previous build stage
+RUN cp /app/target/*.jar app.jar
+
+# Run the JAR
+ENTRYPOINT ["java", "-jar", "app.jar"]
